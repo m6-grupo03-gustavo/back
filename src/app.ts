@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors"
 import "dotenv/config"
 import { handlerAppError } from "./errors/HandleAppError";
+import { CarRouter } from "./routes/car.routes";
 
 export const app = express()
 
@@ -13,9 +14,7 @@ app.use(cors({
     origin: process.env.URL_FROM_FRONT
 }))
 
-// Rotas aqui:
-
-app.get("/", (req, res) => (res.json("Hello back")))
+app.use("/car", CarRouter)
 
 
 app.use(handlerAppError)
