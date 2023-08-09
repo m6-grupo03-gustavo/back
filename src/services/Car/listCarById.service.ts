@@ -1,8 +1,8 @@
 import { Repository } from "typeorm"
-import { ICarResponse } from "../interfaces/car.interface"
-import { Car } from "../entities/car.entitie"
-import { AppDataSource } from "../data-source"
-import { carResponseSchema } from "../schemas/car.schema"
+import { ICarResponse } from "../../interfaces/car.interface"
+import { Car } from "../../entities/car.entitie"
+import { AppDataSource } from "../../data-source"
+import { carResponseSchema } from "../../schemas/car.schema"
 
 
 const listCarByIdService = async (id: number): Promise<ICarResponse | null> => {

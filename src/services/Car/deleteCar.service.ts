@@ -1,6 +1,6 @@
-import { AppDataSource } from "../data-source";
-import { Car } from "../entities/car.entitie";
-import { AppError } from "../errors/app.error";
+import { AppDataSource } from "../../data-source";
+import { Car } from "../../entities/car.entitie";
+import { AppError } from "../../errors/app.error";
 
 export const deleteCarService = async (carId: number): Promise<void> => {
   const carRepository = AppDataSource.getRepository(Car);
