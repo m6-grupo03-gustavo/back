@@ -30,3 +30,20 @@ export const userRequestSchema = userSchema.omit({
 export const userResponseSchema = userSchema.omit({
   password: true,
 });
+
+export const userUpdateSchema = z.object({
+  email: z.string().email().max(255).optional(),
+  password: z.string().max(255).optional(),
+  name: z.string().max(255).optional(),
+  cpf: z.string().max(11).optional(),
+  phone: z.string().max(255).optional(),
+  birthDate: z.date().optional(),
+  description: z.string().max(255).optional(),
+  zipcode: z.string().max(255).optional(),
+  state: z.string().max(255).optional(),
+  city: z.string().max(255).optional(),
+  street: z.string().max(255).optional(),
+  number: z.number().optional(),
+  complement: z.string().max(255).optional(),
+  accountState: z.union([z.literal("buyer"), z.literal("saller")]).optional(),
+});
