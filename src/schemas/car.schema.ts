@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { carImmageRequestSchema } from "./car_immage.schema";
+import { carImmageRequestSchema, carImmageSchema } from "./car_immage.schema";
 
 export const carSchema = z.object({
   id: z.number(),
@@ -11,11 +11,14 @@ export const carSchema = z.object({
   value: z.number().min(0).max(9999999999.99),
   description: z.string().max(255),
   is_published: z.boolean(),
-  images: z.array(carImmageRequestSchema)
+  carImages: z.array(carImmageSchema)
 });
 export const carRequestSchema = carSchema.omit({
   id: true,
-});
+  carImages: true
+}).extend({
+  carImages: z.array(carImmageRequestSchema)
+})
 export const carResponseSchema = carSchema;
 
 export const carResponseListSchema = z.array(carResponseSchema)
