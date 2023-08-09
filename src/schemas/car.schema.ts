@@ -11,7 +11,7 @@ export const carSchema = z.object({
   value: z.number().min(0).max(9999999999.99),
   description: z.string().max(255),
   is_published: z.boolean(),
-  images: z.array(carImmageRequestSchema)
+  carImages: z.array(carImmageSchema)
 });
 export const carRequestSchema = carSchema.omit({
   id: true,
