@@ -9,4 +9,4 @@ export const commentRequestSchema = commentSchema.omit({
 });
 export const commentResponseSchema = commentSchema;
 
-export const commentUpdateSchema = commentRequestSchema;
+export const commentUpdateSchema = commentRequestSchema.optional();

@@ -2,7 +2,7 @@ import "express-async-errors";
 import express from "express";
 import cors from "cors"
 import "dotenv/config"
-import { handlerAppError } from "./errors/HandleAppError";
+import { handlerAppError } from "./errors/handleAppError";
 import { CarRouter } from "./routes/car.routes";
 
 export const app = express()
