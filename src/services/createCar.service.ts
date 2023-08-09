@@ -3,9 +3,10 @@ import { ICarRequest, ICarResponse } from "../interfaces/car.interface";
 import { Car } from "../entities/car.entitie";
 import { AppDataSource } from "../data-source";
 import { CarImages } from "../entities/car_image.entitie";
+import { carResponseSchema } from "../schemas/car.schema";
 
 
-const createCarService = async (data: ICarRequest, userId: number): Promise<ICarResponse> => {
+const createCarService = async (data: ICarRequest, userId: number): Promise<ICarResponse | null> => {
     
     const carRespository: Repository<Car> = AppDataSource.getRepository(Car)
     const carImageRepository: Repository<CarImages> = AppDataSource.getRepository(CarImages)
@@ -23,7 +24,15 @@ const createCarService = async (data: ICarRequest, userId: number): Promise<ICar
         })
         return carImageRepository.save(carImage)
     })
-    return newCar
+    await Promise.all(saveImage)
+
+    const loadedCar = await carRespository.findOne({
+        where: {
+            id:newCar.id
+        },
+        relations: ["carImages"]
+    })
+    return loadedCar
 }
 export {
     createCarService
