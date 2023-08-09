@@ -23,13 +23,7 @@ export const carResponseSchema = carSchema;
 
 export const carResponseListSchema = z.array(carResponseSchema);
 
-export const carUpdateSchema = z.object({
-  name: z.string().max(255).optional(),
-  brand: z.string().max(255).optional(),
-  model: z.string().max(255).optional(),
-  year: z.string().max(4).optional(),
-  fuel: z.string().max(255).optional(),
-  value: z.number().min(0).max(9999999999.99).optional(),
-  description: z.string().max(255).optional(),
-  is_published: z.boolean().optional(),
-});
+export const carUpdateSchema = carSchema.omit({
+  id: true,
+  carImages: true
+}).optional()
