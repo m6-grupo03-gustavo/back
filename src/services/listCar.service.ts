@@ -12,5 +12,6 @@ const listCarService = async(): Promise<ICarListResponse> => {
     
     const allCars = carResponseListSchema.parse(cars)
     return allCars
+    
 }
 export default listCarService
