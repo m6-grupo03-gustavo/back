@@ -8,7 +8,7 @@ export const updateCarController = async (req:Request, res: Response) => {
 
     const updateCar = await updateCarService(carId, req.body)
 
-    return res.json({updateCar}).status(200)
+    return res.json(updateCar).status(200)
 }
 
 export const deleteCarController = async (req: Request, res: Response) => {

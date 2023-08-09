@@ -4,6 +4,7 @@ import { EnsureRequestData } from "../middlewares/ensureRequestData.middleware"
 import { createCarController, listCarsController, listCarByIdController } from "../controllers/car.controller.carol";
 import { carRequestSchema, carUpdateSchema } from "../schemas/car.schema";
 import { ensureIdExistsMiddleware } from "../middlewares/ensureIdExists.middleware";
+import { createCarImageController } from "../controllers/carImage.controller";
 
 export const CarRouter = Router()
 
@@ -12,4 +13,7 @@ CarRouter.get("/:id", ensureIdExistsMiddleware, listCarByIdController)
 CarRouter.post("", EnsureRequestData(carRequestSchema), createCarController)
 CarRouter.patch("/:id",EnsureRequestData(carUpdateSchema), ensureIdExistsMiddleware ,updateCarController)
 CarRouter.delete("/:id",ensureIdExistsMiddleware, deleteCarController)
+
+CarRouter.post("/car-Image", createCarImageController)
+CarRouter.delete("/car-Image/imageId")
 
