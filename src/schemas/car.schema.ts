@@ -11,7 +11,7 @@ export const carSchema = z.object({
   value: z.number().min(0).max(9999999999.99),
   description: z.string().max(255),
   is_published: z.boolean(),
-  carImages: z.array(carImmageSchema)
+  images: z.array(carImmageRequestSchema)
 });
 export const carRequestSchema = carSchema.omit({
   id: true,
@@ -21,4 +21,16 @@ export const carRequestSchema = carSchema.omit({
 })
 export const carResponseSchema = carSchema;
 
-export const carResponseListSchema = z.array(carResponseSchema)
+export const carResponseListSchema = z.array(carResponseSchema);
+
+export const carUpdateSchema = z.object({
+  name: z.string().max(255).optional(),
+  brand: z.string().max(255).optional(),
+  model: z.string().max(255).optional(),
+  year: z.string().max(4).optional(),
+  fuel: z.string().max(255).optional(),
+  value: z.number().min(0).max(9999999999.99).optional(),
+  description: z.string().max(255).optional(),
+  is_published: z.boolean().optional(),
+  images: z.array(carImmageRequestSchema).optional(),
+});
