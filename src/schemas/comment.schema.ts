@@ -8,3 +8,5 @@ export const commentRequestSchema = commentSchema.omit({
   id: true,
 });
 export const commentResponseSchema = commentSchema;
+
+export const commentUpdateSchema = commentRequestSchema.optional();
