@@ -9,9 +9,7 @@ const listCarService = async(): Promise<ICarListResponse> => {
     const cars = await carRepository.find({
         relations: ["carImages"]
     })
-    
     const allCars = carResponseListSchema.parse(cars)
     return allCars
-    
 }
 export default listCarService
