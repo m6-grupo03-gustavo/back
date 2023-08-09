@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { updateCarService } from "../services/updateCar.service";
-import { deleteCarService } from "../services/deleteCar.service";
+import { updateCarService } from "../services/Car/updateCar.service";
+import { deleteCarService } from "../services/Car/deleteCar.service";
 import { ICarRequest } from "../interfaces/car.interface";
-import { createCarService } from "../services/createCar.service";
-import listCarService from "../services/listCar.service";
-import listCarByIdService from "../services/listCarById.service";
+import { createCarService } from "../services/Car/createCar.service";
+import listCarService from "../services/Car/listCar.service";
+import listCarByIdService from "../services/Car/listCarById.service";
 
 
 const createCarController = async (
@@ -45,7 +45,7 @@ export const updateCarController = async (req:Request, res: Response) => {
 
     const updateCar = await updateCarService(carId, req.body)
 
-    return res.json(updateCar).status(200)
+    return res.json(updateCar).status(201)
 }
 
 export const deleteCarController = async (req: Request, res: Response) => {

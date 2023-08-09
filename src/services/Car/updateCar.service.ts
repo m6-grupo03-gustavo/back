@@ -1,6 +1,6 @@
-import { AppDataSource } from "../data-source";
-import { Car } from "../entities/car.entitie";
-import { ICarResponse, ICarUpdate } from "../interfaces/car.interface";
+import { AppDataSource } from "../../data-source";
+import { Car } from "../../entities/car.entitie";
+import { ICarResponse, ICarUpdate } from "../../interfaces/car.interface";
 
 export const updateCarService = async (
   carId: number,
