@@ -26,4 +26,4 @@ export const carResponseListSchema = z.array(carResponseSchema);
 export const carUpdateSchema = carSchema.omit({
   id: true,
   carImages: true
-}).partial()
+}).optional()
