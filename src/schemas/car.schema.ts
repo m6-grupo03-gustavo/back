@@ -7,7 +7,7 @@ export const carSchema = z.object({
   brand: z.string().max(255),
   model: z.string().max(255),
   color: z.string().max(255),
-  km: z.number().positive(),
+  km: z.number().nonnegative(),
   year: z.string().max(4),
   fuel: z.string().max(255),
   value: z.number().min(0).max(9999999999.99),
