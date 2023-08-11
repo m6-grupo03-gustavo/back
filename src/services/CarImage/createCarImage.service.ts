@@ -19,6 +19,11 @@ export const createCarImageService = async (data:ICarImageRequest, carId:number)
 
     await carImageRepository.save(createCarImage)
     
-    return carImageResponseSchema.parse(createCarImage)
+    const response = {
+        id: createCarImage.id,
+        url: createCarImage.url,
+        carId: findCar!.id
+    };
 
+    return carImageResponseSchema.parse(response);
 }
