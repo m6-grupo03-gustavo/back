@@ -3,11 +3,12 @@ import { updateCarService } from "../services/Car/updateCar.service";
 import { deleteCarService } from "../services/Car/deleteCar.service";
 import { ICarRequest } from "../interfaces/car.interface";
 import { createCarService } from "../services/Car/createCar.service";
-import listCarService from "../services/Car/listCar.service";
-import listCarByIdService from "../services/Car/listCarById.service";
+import {listCarService} from "../services/Car/listCar.service";
+import {listCarByIdService} from "../services/Car/listCarById.service";
+import { Pagination } from "../interfaces/pagination.interface";
 
 
-const createCarController = async (
+export const createCarController = async (
     req: Request,
     res: Response
   ) => {
@@ -18,26 +19,19 @@ const createCarController = async (
     return res.status(201).json(contact);
 };
 
-const listCarsController = async (
+export const listCarsController = async (
     req: Request,
     res: Response
   ): Promise<Response> => {
-    const listCars = await listCarService();
+    const listCars: Pagination = await listCarService(res.locals.pagination);
     return res.json(listCars);
   };
 
-const listCarByIdController = async (req: Request, res: Response): Promise<Response> => {
+export const listCarByIdController = async (req: Request, res: Response): Promise<Response> => {
     const id: number = parseInt(req.params.id)
     const listCar = await listCarByIdService(id);
     return res.json(listCar);
   };
-
-
-export{
-    createCarController,
-    listCarsController,
-    listCarByIdController
-} 
 
 
 export const updateCarController = async (req:Request, res: Response) => {
