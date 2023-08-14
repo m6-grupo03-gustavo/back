@@ -1,15 +1,21 @@
 import { Repository } from "typeorm"
-import { ICarListResponse } from "../../interfaces/car.interface"
 import { Car } from "../../entities/car.entitie"
 import { AppDataSource } from "../../data-source"
-import { carResponseListSchema } from "../../schemas/car.schema"
+import { Pagination, PaginationParams } from "../../interfaces/pagination.interface"
 
-const listCarService = async(): Promise<ICarListResponse> => {
+export const listCarService = async({page, perPage, order, sort, prevPage, nextPage}:PaginationParams): Promise<Pagination> => {
     const carRepository: Repository<Car> = AppDataSource.getRepository(Car)
-    const cars = await carRepository.find({
+    const [car, count]: [Car[], number] = await carRepository.findAndCount({
+        order:{ [sort]: order},
+        skip: page,
+        take: perPage,
         relations: ["carImages"]
     })
-    const allCars = carResponseListSchema.parse(cars)
-    return allCars
+
+    return {
+        prevPage: page <=1 ? null : prevPage,
+        nextPage: count - page <= perPage ? null : nextPage,
+        count,
+        data: car
+    }
 }
-export default listCarService

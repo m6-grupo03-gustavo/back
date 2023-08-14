@@ -5,7 +5,7 @@ import { AppDataSource } from "../../data-source"
 import { carResponseSchema } from "../../schemas/car.schema"
 
 
-const listCarByIdService = async (id: number): Promise<ICarResponse | null> => {
+export const listCarByIdService = async (id: number): Promise<ICarResponse | null> => {
     const carRepository: Repository<Car> = AppDataSource.getRepository(Car)
     const car = await carRepository.findOne({
         where:{
@@ -16,4 +16,3 @@ const listCarByIdService = async (id: number): Promise<ICarResponse | null> => {
     const carResponse = carResponseSchema.parse(car)
     return carResponse;
 }
-export default listCarByIdService

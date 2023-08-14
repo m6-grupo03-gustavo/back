@@ -9,10 +9,11 @@ import { createCarController,
          listCarsController, 
          updateCarController 
         } from "../controllers/car.controller";
+import { pagination } from "../middlewares/pagination.middleware";
 
 export const CarRouter = Router()
 
-CarRouter.get("", listCarsController)
+CarRouter.get("", pagination, listCarsController)
 CarRouter.get("/:id", ensureIdExistsMiddleware, listCarByIdController)
 CarRouter.post("", EnsureRequestData(carRequestSchema), createCarController)
 CarRouter.patch("/:id",EnsureRequestData(carUpdateSchema), ensureIdExistsMiddleware ,updateCarController)

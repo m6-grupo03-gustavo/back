@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { AppDataSource } from "../data-source";
 import { Car } from "../entities/car.entitie";
 import { AppError } from "../errors/app.error";
-const ensureIdExistsMiddleware = async (
+export const ensureIdExistsMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -18,7 +18,3 @@ const ensureIdExistsMiddleware = async (
   res.locals.carId = findCar;
   return next();
 };
-
-export {
-    ensureIdExistsMiddleware
-}
