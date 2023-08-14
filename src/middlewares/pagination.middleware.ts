@@ -45,4 +45,3 @@ export const pagination = (req: Request, res: Response, next: NextFunction): voi
   };
   return next();
 };
-
