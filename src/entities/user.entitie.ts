@@ -22,7 +22,7 @@ export class User {
   @Column()
   phone: string;
   @Column()
-  birthdate: Date;
+  birthdate: string;
   @Column({ nullable: true })
   description: string;
   @Column()
