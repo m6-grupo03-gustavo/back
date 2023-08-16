@@ -10,15 +10,17 @@ import { createCarController,
          updateCarController 
         } from "../controllers/car.controller";
 import { pagination } from "../middlewares/pagination.middleware";
+import { ensureIsAuthMiddleware } from "../middlewares/ensureIsAuth.middleware";
+import { ensureUserIsSeller } from "../middlewares/ensureUserIsSeller.middleware";
 
 export const CarRouter = Router()
 
 CarRouter.get("", pagination, listCarsController)
 CarRouter.get("/:id", ensureIdExistsMiddleware, listCarByIdController)
-CarRouter.post("", EnsureRequestData(carRequestSchema), createCarController)
-CarRouter.patch("/:id",EnsureRequestData(carUpdateSchema), ensureIdExistsMiddleware ,updateCarController)
-CarRouter.delete("/:id",ensureIdExistsMiddleware, deleteCarController)
+CarRouter.post("",ensureIsAuthMiddleware, EnsureRequestData(carRequestSchema),ensureUserIsSeller, createCarController)
+CarRouter.patch("/:id",ensureIsAuthMiddleware, EnsureRequestData(carUpdateSchema), ensureIdExistsMiddleware, ensureUserIsSeller ,updateCarController)
+CarRouter.delete("/:id",ensureIsAuthMiddleware, ensureIdExistsMiddleware, ensureUserIsSeller, deleteCarController)
 
-CarRouter.post("/car-Image/:id", ensureIdExistsMiddleware, createCarImageController)
-CarRouter.delete("/car-Image/:id/image:imageId", ensureIdExistsMiddleware, deleteCarImageController)
+CarRouter.post("/car-Image/:id",ensureIsAuthMiddleware, ensureIdExistsMiddleware, ensureUserIsSeller, createCarImageController)
+CarRouter.delete("/car-Image/:id/image:imageId",ensureIsAuthMiddleware,  ensureIdExistsMiddleware, ensureUserIsSeller, deleteCarImageController)
 
