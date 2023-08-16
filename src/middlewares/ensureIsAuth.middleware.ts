@@ -17,7 +17,7 @@ export const ensureIsAuthMiddleware = ( req: Request, res: Response, next: NextF
             return res.status(401).json({message: "invalid credentials"})
         }
         res.locals.userId = decoded.sub
-
+   
         return next()
     })
 
