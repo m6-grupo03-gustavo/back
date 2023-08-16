@@ -14,7 +14,7 @@ export const ensureUserIsSeller = async ( req: Request, res: Response, next: Nex
     }
 
     if(findUser.account_state === "buyer"){
-        throw new AppError("Invalid permission, you must be a seller",404)
+        throw new AppError("Invalid permission, you must be a seller",403)
     }
 
     return next()

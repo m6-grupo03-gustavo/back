@@ -13,8 +13,7 @@ export const createCarController = async (
     res: Response
   ) => {
     const carData: ICarRequest = req.body;
-    const id = 1
-    // const id: number = parseInt(res.locals.userId) //coloquei pois quand o usuário estiver logado sera pego o id atraves da criação do token
+    const id: number = parseInt(res.locals.userId)
     const contact = await createCarService(carData, id);
     return res.status(201).json(contact);
 };
