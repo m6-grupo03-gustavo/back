@@ -5,7 +5,7 @@ import { hash } from "bcryptjs";
 
 enum AccountState {
   Buyer = "buyer",
-  Saller = "saller",
+  Seller = "seller",
 }
 
 @Entity("users")
@@ -35,7 +35,7 @@ export class User {
   @Column()
   street: string;
   @Column()
-  number: number;
+  number: string;
   @Column({ nullable: true })
   complement: string;
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })

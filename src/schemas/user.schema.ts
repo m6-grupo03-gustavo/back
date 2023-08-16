@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const accountStateChoices = ["buyer", "saller"];
+const accountStateChoices = ["buyer", "seller"];
 
 export const userSchema = z.object({
   id: z.number(),
@@ -15,13 +15,13 @@ export const userSchema = z.object({
   state: z.string().max(255),
   city: z.string().max(255),
   street: z.string().max(255),
-  number: z.number(),
+  number: z.string(),
   complement: z.string().max(255).nullish(),
   register_date: z
     .date()
     .nullish()
     .default(() => new Date()),
-  account_state: z.union([z.literal("buyer"), z.literal("saller")]),
+  account_state: z.union([z.literal("buyer"), z.literal("seller")]),
 });
 export const userRequestSchema = userSchema.omit({
   id: true,
@@ -43,7 +43,7 @@ export const userUpdateSchema = z.object({
   state: z.string().max(255).optional(),
   city: z.string().max(255).optional(),
   street: z.string().max(255).optional(),
-  number: z.number().optional(),
+  number: z.string().optional(),
   complement: z.string().max(255).optional(),
-  accountState: z.union([z.literal("buyer"), z.literal("saller")]).optional(),
+  accountState: z.union([z.literal("buyer"), z.literal("seller")]).optional(),
 });
