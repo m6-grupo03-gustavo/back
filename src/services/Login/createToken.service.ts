@@ -30,8 +30,7 @@ export const createTokenService = async (data: ILoginRequest) => {
       userName: user.name,
     },
     process.env.SECRET_KEY!,
-    { expiresIn: "1h" }
+    { expiresIn: "24h", subject: user.id.toString() }
   );
-
   return token;
 };

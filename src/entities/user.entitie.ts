@@ -1,6 +1,7 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Car } from "./car.entitie";
 import { CarUserComments } from "./car_user_comment.entities";
+import { hash } from "bcryptjs";
 
 enum AccountState {
   Buyer = "buyer",
@@ -46,4 +47,10 @@ export class User {
   cars: Car[];
   @OneToMany(() => CarUserComments, (carUserComments) => carUserComments.user)
   comments: CarUserComments[];
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  async hashPassword() {
+    this.password = await hash(this.password, 10);
+  }
 }

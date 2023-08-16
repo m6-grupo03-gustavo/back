@@ -17,7 +17,7 @@ app.use(
     origin: process.env.URL_FROM_FRONT,
   })
 );
-app.use(handlerAppError);
 app.use("/login", loginRoutes);
 app.use("/user", userRoutes);
 app.use("/car", CarRouter);
+app.use(handlerAppError);
