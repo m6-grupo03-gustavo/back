@@ -6,6 +6,7 @@ import { createCarImageController, deleteCarImageController } from "../controlle
 import { createCarController, 
          deleteCarController, 
          listCarByIdController, 
+         listCarFromUserController, 
          listCarsController, 
          updateCarController 
         } from "../controllers/car.controller";
@@ -17,6 +18,7 @@ import { ensureIsUserOwner } from "../middlewares/ensureIsUserOwner.middleware";
 export const CarRouter = Router()
 
 CarRouter.get("", pagination, listCarsController)
+CarRouter.get("/user",ensureIsAuthMiddleware, pagination, listCarFromUserController)
 CarRouter.get("/:id", ensureIdExistsMiddleware, listCarByIdController)
 CarRouter.post("",ensureIsAuthMiddleware, EnsureRequestData(carRequestSchema),ensureUserIsSeller, createCarController)
 CarRouter.patch("/:id",ensureIsAuthMiddleware, EnsureRequestData(carUpdateSchema), ensureIdExistsMiddleware, ensureIsUserOwner, ensureUserIsSeller ,updateCarController)
