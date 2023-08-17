@@ -6,6 +6,8 @@ import { createCarService } from "../services/Car/createCar.service";
 import {listCarService} from "../services/Car/listCar.service";
 import {listCarByIdService} from "../services/Car/listCarById.service";
 import { Pagination } from "../interfaces/pagination.interface";
+import { promises } from "dns";
+import { listCarFromUSerService } from "../services/Car/listCarFromUser.service";
 
 
 export const createCarController = async (
@@ -32,6 +34,12 @@ export const listCarByIdController = async (req: Request, res: Response): Promis
     return res.json(listCar);
   };
 
+export const listCarFromUserController = async (req:Request, res: Response) => {
+  const userId = parseInt(res.locals.userId)
+   const listCars = await listCarFromUSerService(res.locals.pagination, userId)
+
+   return res.json(listCars)
+}
 
 export const updateCarController = async (req:Request, res: Response) => {
     const carId = parseInt(req.params.id)

@@ -1,4 +1,5 @@
 import { Car } from "../entities/car.entitie";
+import { ICarListResponse } from "./car.interface";
 
 export interface Pagination {
   prevPage: string | null;
