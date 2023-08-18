@@ -14,8 +14,6 @@ export class Car {
   @PrimaryGeneratedColumn("increment")
   id: number;
   @Column()
-  name: string;
-  @Column()
   brand: string;
   @Column()
   model: string;
