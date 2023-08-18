@@ -3,7 +3,6 @@ import { carImageRequestSchema, carImageSchema } from "./car_image.schema";
 
 export const carSchema = z.object({
   id: z.number(),
-  name: z.string().max(255),
   brand: z.string().max(255),
   model: z.string().max(255),
   color: z.string().max(255),
