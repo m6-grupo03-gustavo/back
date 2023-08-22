@@ -1,29 +1,33 @@
-import { randomUUID } from "crypto"
+import { compare } from "bcryptjs";
 import { AppDataSource } from "../../data-source"
 import { User } from "../../entities/user.entitie"
 import { AppError } from "../../errors/app.error"
-import { emailService } from "../../utils/sendEmail.utils"
 
-export const resetPasswordService = async (email: string) =>{
+export const resetUserPasswordService = async (resetToken: string, newPassword:string) => {
+
     const userRepository = AppDataSource.getRepository(User)
 
-    const findUser = await userRepository.findOneBy({email: email})
+    const findUser = await userRepository.findOne({
+        where:{
+            reset_token: resetToken
+        }
+    })
 
-    if(!findUser){
-        throw new AppError("There is no user registered with this email", 404)
+    if (!findUser) {
+        throw new AppError("User not found or token already expired.", 404)
     }
+    const passwordMatch = await compare(newPassword, findUser.password);
+    
+    if(passwordMatch){
+        throw new AppError("Your new password must be different from the first one.", 403)
+    }
+    
+    findUser.reset_token = null as any
 
-    const resetToken = randomUUID()
-
-    const ResetUserPassword = {
+    const addNewPassword = userRepository.create({
         ...findUser,
-        reset_token: resetToken
-    }
+        password: newPassword,
+    })
 
-    const createReset = userRepository.create(ResetUserPassword)
-    await userRepository.save(createReset)
-
-    const restPaswordTemplate = emailService.resetPasswordTemplate(findUser.email, findUser.name, resetToken)
-
-    await emailService.sendEmail(restPaswordTemplate)
+    await userRepository.save(addNewPassword)
 }

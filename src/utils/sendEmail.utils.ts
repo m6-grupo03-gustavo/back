@@ -28,11 +28,7 @@ class EmailService {
       });
   }
 
-  resetPasswordTemplate(
-    userEmail: string,
-    userName: string,
-    resetToken: string
-  ) {
+  resetPasswordTemplate(userEmail: string, userName: string, resetToken: string) {
     const mailGenerator = new Mailgen({
       theme: "default",
       product: {
@@ -53,7 +49,7 @@ class EmailService {
             color: "#DC4D2F",
             text: "Redefina sua senha",
             // link de página de redefinição de senha 
-            link: "https://www.youtube.com/",
+            link: `http://127.0.0.1:3000//user/resetUserPassword/${resetToken}`,
           },
         },
         outro:
