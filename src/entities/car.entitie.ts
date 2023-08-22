@@ -32,7 +32,7 @@ export class Car {
   @Column()
   is_published: boolean;
 
-  @OneToMany(() => CarImages, (carImages) => carImages.car)
+  @OneToMany(() => CarImages, (carImages) => carImages.car, { onDelete: "CASCADE" })
   carImages: CarImages[];
   @OneToMany(() => CarUserComments, (carUserComments) => carUserComments.car)
   comments: CarUserComments[];
