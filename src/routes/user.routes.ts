@@ -4,6 +4,7 @@ import {
   deleteUserController,
   getUserController,
   patchUserController,
+  resetUserPasswordController,
 } from "../controllers/user.controller";
 import { ensureIsAuthMiddleware } from "../middlewares/ensureIsAuth.middleware";
 import { ensureIsUserOwner } from "../middlewares/ensureIsUserOwner.middleware";
@@ -14,3 +15,5 @@ userRoutes.post("", createUserController);
 userRoutes.get("/:id",ensureIsAuthMiddleware, getUserController);
 userRoutes.patch("/:id",ensureIsAuthMiddleware, ensureIsUserOwner, patchUserController);
 userRoutes.delete("/:id",ensureIsAuthMiddleware,ensureIsUserOwner, deleteUserController);
+
+userRoutes.post("/resetUserPassword", resetUserPasswordController);

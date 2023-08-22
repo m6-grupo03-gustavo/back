@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import { getUserService } from "../services/User/getUser.service";
 import { patchUserService } from "../services/User/patchUser.service";
 import { deletUserService } from "../services/User/deletUser.service";
+import { resetPasswordService } from "../services/User/resetPassword.service";
 
 export const createUserController = async (
   req: Request,
@@ -45,3 +46,11 @@ export const deleteUserController = async (
 
   return res.status(204).send();
 };
+
+
+export const resetUserPasswordController = async (req: Request, res: Response) =>{
+  const email = req.body.email
+  await resetPasswordService(email)
+
+  res.json({"message": "Look at your email account"})
+}

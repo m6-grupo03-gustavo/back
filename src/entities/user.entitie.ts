@@ -42,6 +42,8 @@ export class User {
   register_date: Date;
   @Column({ type: "enum", enum: AccountState })
   account_state: AccountState;
+  @Column({ nullable: true })
+  reset_token: string
 
   @OneToMany(() => Car, (car) => car.user)
   cars: Car[];
