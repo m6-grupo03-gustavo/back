@@ -11,7 +11,7 @@ export const carSchema = z.object({
   fuel: z.string().max(255),
   value: z.number().min(0).max(9999999999.99),
   description: z.string().max(255),
-  is_published: z.boolean(),
+  is_published: z.boolean().default(true),
   carImages: z.array(carImageSchema)
 });
 export const carRequestSchema = carSchema.omit({
