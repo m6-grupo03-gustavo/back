@@ -1,10 +1,11 @@
 import { createUserService } from "../services/User/createUser.service";
 import { Request, Response } from "express";
-import { getUserService } from "../services/User/getUser.service";
+import { getUserByIdService } from "../services/User/getUserById.service";
 import { patchUserService } from "../services/User/patchUser.service";
 import { deletUserService } from "../services/User/deletUser.service";
 import { resetPasswordService } from "../services/User/resetEmail.service";
 import { resetUserPasswordService } from "../services/User/resetPassword.service";
+import { getUserService } from "../services/User/getUser.service";
 
 export const createUserController = async (
   req: Request,
@@ -19,9 +20,17 @@ export const getUserController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
+  const user = await getUserService();
+  return res.status(200).json(user);
+};
+
+export const getUserControllerById = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   const userId = Number(req.params.id);
 
-  const user = await getUserService(userId);
+  const user = await getUserByIdService(userId);
 
   return res.status(200).json(user);
 };
