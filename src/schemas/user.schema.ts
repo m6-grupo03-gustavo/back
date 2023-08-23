@@ -30,6 +30,9 @@ export const userRequestSchema = userSchema.omit({
 export const userResponseSchema = userSchema.omit({
   password: true,
 });
+export const usersResponseSchema =z.array(userSchema.omit({
+  password: true,
+}));
 
 export const userUpdateSchema = z.object({
   email: z.string().email().max(255).optional(),

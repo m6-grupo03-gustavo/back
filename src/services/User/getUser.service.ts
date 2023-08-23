@@ -3,24 +3,13 @@ import { IUserResponse } from "../../interfaces/user.interface";
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entitie";
 import { AppError } from "../../errors/app.error";
-import { userResponseSchema } from "../../schemas/user.schema";
+import { usersResponseSchema } from "../../schemas/user.schema";
 
-export const getUserService = async (
-  userId: number
-): Promise<IUserResponse> => {
+export const getUserService = async (): Promise<any> => {
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
-  const user: User | null = await userRepository.findOne({
-    where: {
-      id: userId,
-    },
-  });
+  const user: User[] = await userRepository.find();
 
-  if (!user) {
-    throw new AppError("User not found", 404);
-  }
-
-  const returnedUser = userResponseSchema.parse(user);
-
+  const returnedUser = usersResponseSchema.parse(user);
   return returnedUser;
 };
