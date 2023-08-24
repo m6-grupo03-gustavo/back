@@ -34,7 +34,7 @@ class EmailService {
       product: {
         name: "KenzieCars",
         // link da home do site
-        link: "https://www.youtube.com/",
+        link: `${process.env.URL_FROM_FRONT}/user/resetPassword/${resetToken}`,
       },
     });
 
@@ -49,7 +49,7 @@ class EmailService {
             color: "#DC4D2F",
             text: "Redefina sua senha",
             // link de página de redefinição de senha 
-            link: `http://127.0.0.1:3000//user/resetUserPassword/${resetToken}`,
+            link: `${process.env.URL_FROM_FRONT}/user/resetPassword/${resetToken}`,
           },
         },
         outro:

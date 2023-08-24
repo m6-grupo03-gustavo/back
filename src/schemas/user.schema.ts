@@ -22,6 +22,7 @@ export const userSchema = z.object({
     .nullish()
     .default(() => new Date()),
   account_state: z.union([z.literal("buyer"), z.literal("seller")]),
+  reset_token: z.string().nullish()
 });
 export const userRequestSchema = userSchema.omit({
   id: true,
@@ -49,4 +50,5 @@ export const userUpdateSchema = z.object({
   number: z.string().optional(),
   complement: z.string().max(255).optional(),
   accountState: z.union([z.literal("buyer"), z.literal("seller")]).optional(),
+  reset_token: z.string().nullish()
 });
