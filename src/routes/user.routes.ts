@@ -10,6 +10,8 @@ import {
 } from "../controllers/user.controller";
 import { ensureIsAuthMiddleware } from "../middlewares/ensureIsAuth.middleware";
 import { ensureIsUserOwner } from "../middlewares/ensureIsUserOwner.middleware";
+import { EnsureRequestData } from "../middlewares/ensureRequestData.middleware";
+import { userSchemaEmail, userSchemaPassword } from "../schemas/user.schema";
 
 export const userRoutes = Router();
 

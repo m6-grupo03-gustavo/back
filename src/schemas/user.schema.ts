@@ -52,3 +52,11 @@ export const userUpdateSchema = z.object({
   accountState: z.union([z.literal("buyer"), z.literal("seller")]).optional(),
   reset_token: z.string().nullish()
 });
+
+
+export const userSchemaEmail = z.object({
+  email: z.string().email().max(255),
+});
+export const userSchemaPassword = z.object({
+  password: z.string().max(255),
+});

@@ -69,6 +69,9 @@ export const resetUserPasswordController = async (req: Request, res: Response) =
   const resetToken = req.params.token
   const password = req.body.password
 
+  console.log(resetToken, password)
+
+
   await resetUserPasswordService(resetToken, password)
 
   res.json({"message": "Your password has been change."})
