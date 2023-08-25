@@ -3,7 +3,7 @@ import { AppDataSource } from "../../data-source"
 import { User } from "../../entities/user.entitie"
 import { AppError } from "../../errors/app.error"
 
-export const resetUserPasswordService = async (resetToken: string, newPassword:string) => {
+export const resetUserPasswordService = async (resetToken: string, newPassword:string): Promise<void> => {
 
     const userRepository = AppDataSource.getRepository(User)
 
