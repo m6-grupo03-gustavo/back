@@ -13,21 +13,29 @@ export const resetUserPasswordService = async (resetToken: string, newPassword:s
         }
     })
 
+    
     if (!findUser) {
         throw new AppError("User not found or token already expired.", 404)
     }
-    const passwordMatch = await compare(newPassword, findUser.password);
+    console.log(findUser)
     
-    if(passwordMatch){
-        throw new AppError("Your new password must be different from the first one.", 403)
-    }
+    if (findUser.reset_token_expiration > new Date()) {
+        const passwordMatch = await compare(newPassword, findUser.password);
+        
+        if(passwordMatch){
+            throw new AppError("Your new password must be different from the first one.", 403)
+        }
+        
+        findUser.reset_token = null as any
     
-    findUser.reset_token = null as any
+        const addNewPassword = userRepository.create({
+            ...findUser,
+            password: newPassword,
+        })
+    
+        await userRepository.save(addNewPassword)
+      } 
 
-    const addNewPassword = userRepository.create({
-        ...findUser,
-        password: newPassword,
-    })
+      throw new AppError("Your token already expired.", 403)
 
-    await userRepository.save(addNewPassword)
 }

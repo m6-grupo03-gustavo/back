@@ -3,6 +3,7 @@ import { AppDataSource } from "../../data-source"
 import { User } from "../../entities/user.entitie"
 import { AppError } from "../../errors/app.error"
 import { emailService } from "../../utils/sendEmail.utils"
+import { addMinutes } from "date-fns"
 
 export const resetPasswordService = async (email: string) =>{
     const userRepository = AppDataSource.getRepository(User)
@@ -13,11 +14,13 @@ export const resetPasswordService = async (email: string) =>{
         throw new AppError("There is no user registered with this email", 404)
     }
 
+    const expirationDate = addMinutes(new Date(), 5)
     const resetToken = randomUUID()
 
     const ResetUserPassword = {
         ...findUser,
-        reset_token: resetToken
+        reset_token: resetToken,
+        reset_token_expiration: expirationDate
     }
 
     const createReset = userRepository.create(ResetUserPassword)
@@ -27,3 +30,4 @@ export const resetPasswordService = async (email: string) =>{
 
     await emailService.sendEmail(restPaswordTemplate)
 }
+

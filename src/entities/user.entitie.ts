@@ -44,6 +44,8 @@ export class User {
   account_state: AccountState;
   @Column({ nullable: true })
   reset_token: string
+  @Column({ nullable: true, type: "timestamp" })
+  reset_token_expiration: Date;
 
   @OneToMany(() => Car, (car) => car.user)
   cars: Car[];
