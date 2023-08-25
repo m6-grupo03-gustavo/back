@@ -8,6 +8,6 @@ export class CarImages {
   @Column()
   url: string;
 
-  @ManyToOne(() => Car, (car) => car.carImages)
+  @ManyToOne(() => Car, (car) => car.carImages, { onDelete: "CASCADE" })
   car: Car;
 }
