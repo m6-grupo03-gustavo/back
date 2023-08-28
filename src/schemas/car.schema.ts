@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { carImageRequestSchema, carImageSchema } from "./car_image.schema";
+import { userResponseSchema } from "./user.schema";
 
 export const carSchema = z.object({
   id: z.number(),
@@ -20,7 +21,9 @@ export const carRequestSchema = carSchema.omit({
 }).extend({
   carImages: z.array(carImageRequestSchema)
 })
-export const carResponseSchema = carSchema;
+export const carResponseSchema = carSchema.extend({
+  user: userResponseSchema
+});
 
 export const carResponseListSchema = z.array(carResponseSchema);
 
