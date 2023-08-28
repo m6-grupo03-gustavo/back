@@ -14,7 +14,7 @@ export const resetPasswordService = async (email: string) =>{
         throw new AppError("There is no user registered with this email", 404)
     }
 
-    const expirationDate = addMinutes(new Date(), 1)
+    const expirationDate = addMinutes(new Date(), 5)
     const resetToken = randomUUID()
 
     const ResetUserPassword = {
