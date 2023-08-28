@@ -11,7 +11,7 @@ export const listCarByIdService = async (id: number): Promise<ICarResponse | nul
         where:{
             id: id
         },
-        relations: ["carImages"]
+        relations: ["carImages", "user"]
     })
     const carResponse = carResponseSchema.parse(car)
     return carResponse;
