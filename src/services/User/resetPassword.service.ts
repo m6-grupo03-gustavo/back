@@ -17,9 +17,8 @@ export const resetUserPasswordService = async (resetToken: string, newPassword:s
     if (!findUser) {
         throw new AppError("User not found or token already expired.", 404)
     }
-    console.log(findUser)
     
-    if (findUser.reset_token_expiration > new Date()) {
+    if (findUser.reset_token_expiration > new Date() === true) {
         const passwordMatch = await compare(newPassword, findUser.password);
         
         if(passwordMatch){
@@ -34,8 +33,9 @@ export const resetUserPasswordService = async (resetToken: string, newPassword:s
         })
     
         await userRepository.save(addNewPassword)
-      } 
+      }else{
+          throw new AppError("Your token already expired.", 403)
+      }
 
-      throw new AppError("Your token already expired.", 403)
 
 }
