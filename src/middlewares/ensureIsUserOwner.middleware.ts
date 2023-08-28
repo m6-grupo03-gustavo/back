@@ -3,6 +3,8 @@ import { AppDataSource } from "../data-source";
 import { User } from "../entities/user.entitie";
 import { Car } from "../entities/car.entitie";
 import { AppError } from "../errors/app.error";
+import { Repository } from "typeorm";
+import { CarUserComments } from "../entities/car_user_comment.entities";
 
 export const ensureIsUserOwner = async ( req: Request, res: Response, next: NextFunction ) => {
 
@@ -33,6 +35,21 @@ export const ensureIsUserOwner = async ( req: Request, res: Response, next: Next
 
     if(userTokenId !== userParamsId){
         throw new AppError("You must be user owner", 403)
+    }
+    return next()
+}else if(req.baseUrl === "/comments"){
+    const userTokenId = parseInt(res.locals.userId)
+    const id = parseInt(req.params.commentId)
+    const commentRepository: Repository<CarUserComments> = AppDataSource.getRepository(CarUserComments);
+
+  const comment = await commentRepository.findOne({
+    where: {
+      id: id,
+    },
+  });
+
+    if(userTokenId !== Number(comment?.user)){
+        throw new AppError("You must be user owner", 403)   
     }
     return next()
 }

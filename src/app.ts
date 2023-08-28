@@ -6,6 +6,7 @@ import { handlerAppError } from "./errors/handleAppError";
 import { CarRouter } from "./routes/car.routes";
 import { loginRoutes } from "./routes/login.routes";
 import { userRoutes } from "./routes/user.routes";
+import { commentsRoutes } from "./routes/comments.routes";
 
 export const app = express();
 
@@ -20,4 +21,5 @@ app.use(
 app.use("/login", loginRoutes);
 app.use("/user", userRoutes);
 app.use("/car", CarRouter);
+app.use("/comments", commentsRoutes)
 app.use(handlerAppError);
