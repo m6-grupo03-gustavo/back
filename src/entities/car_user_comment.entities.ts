@@ -8,7 +8,8 @@ export class CarUserComments {
   id: number;
   @Column()
   comment: string;
-
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  register_date: Date;
   @ManyToOne(() => Car, (car) => car.comments)
   car: Car;
   @ManyToOne(() => User, (user) => user.comments)
