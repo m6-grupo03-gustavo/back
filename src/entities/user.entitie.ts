@@ -1,4 +1,11 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { Car } from "./car.entitie";
 import { CarUserComments } from "./car_user_comment.entities";
 import { hash } from "bcryptjs";
@@ -43,7 +50,7 @@ export class User {
   @Column({ type: "enum", enum: AccountState })
   account_state: AccountState;
   @Column({ nullable: true })
-  reset_token: string
+  reset_token: string;
   @Column({ nullable: true, type: "timestamp" })
   reset_token_expiration: Date;
 

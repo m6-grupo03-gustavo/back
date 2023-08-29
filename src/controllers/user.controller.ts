@@ -57,22 +57,26 @@ export const deleteUserController = async (
   return res.status(204).send();
 };
 
+export const resetUserPasswordEmailController = async (
+  req: Request,
+  res: Response
+) => {
+  const email = req.body.email;
+  await resetPasswordService(email);
 
-export const resetUserPasswordEmailController = async (req: Request, res: Response) =>{
-  const email = req.body.email
-  await resetPasswordService(email)
+  res.json({ message: "Look at your email account" });
+};
 
-  res.json({"message": "Look at your email account"})
-}
+export const resetUserPasswordController = async (
+  req: Request,
+  res: Response
+) => {
+  const resetToken = req.params.token;
+  const password = req.body.password;
 
-export const resetUserPasswordController = async (req: Request, res: Response) =>{
-  const resetToken = req.params.token
-  const password = req.body.password
+  console.log(resetToken, password);
 
-  console.log(resetToken, password)
+  await resetUserPasswordService(resetToken, password);
 
-
-  await resetUserPasswordService(resetToken, password)
-
-  res.json({"message": "Your password has been change."})
-}
+  res.json({ message: "Your password has been change." });
+};
