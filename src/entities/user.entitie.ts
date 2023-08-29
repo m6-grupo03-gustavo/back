@@ -47,7 +47,7 @@ export class User {
   @Column({ nullable: true, type: "timestamp" })
   reset_token_expiration: Date;
 
-  @OneToMany(() => Car, (car) => car.user)
+  @OneToMany(() => Car, (car) => car.user, { onDelete: "CASCADE" })
   cars: Car[];
   @OneToMany(() => CarUserComments, (carUserComments) => carUserComments.user)
   comments: CarUserComments[];
