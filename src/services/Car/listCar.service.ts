@@ -9,7 +9,7 @@ export const listCarService = async({page, perPage, order, sort, prevPage, nextP
         order:{ [sort]: order},
         skip: page,
         take: perPage,
-        relations: ["carImages"]
+        relations: ["carImages", "user"]
     })
 
     return {
