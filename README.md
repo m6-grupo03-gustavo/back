@@ -141,14 +141,13 @@ Obs. O campo "account_state" pode ser definido como "seller" caso o usuário sej
   "value": 100,<br/>
   "description": "The Car",<br/>
   "is_published": true,<br/>
-  "carImages": [<br/>
-    {<br/>
+  "carImages":<br/> 
+    [{<br/>
       "url": "https://example.com/car2.jpg"<br/>
     },<br/>
 		{<br/>
       "url": "https://example.com/car2.jpg"<br/>
-    }<br/>
-  ]<br/>
+    }]<br/>
 }<br/>
 
 ### Para adicionar e remover imagens dos carros:
@@ -157,7 +156,7 @@ Obs. O campo "account_state" pode ser definido como "seller" caso o usuário sej
 | POST   | /car/car-Image/:id         | Adição eu uma nova imagem a um carro especifico   | Usuário dono da conta ques esteja logado, necessita do token de autenticação  |
 | DELETE | /car-Image/:id/image:imageId | Deleçã de uma imagem que pertence a um carro especifico | Usuário dono da conta ques esteja logado, necessita do token de autenticação   |
 
-.POST -/car/car-Image/:id
-{
-	"url": "https://example.com/car2.jpg"
+.POST -/car/car-Image/:id<br/>
+{<br/>
+	"url": "https://example.com/car2.jpg"<br/>
 }
