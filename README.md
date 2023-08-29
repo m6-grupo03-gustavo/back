@@ -56,7 +56,8 @@ O servidor backend será iniciado na porta 3000.
 - [x] CRUD completo de carros (cadastrar, listar, atulizar e deletar)<br/>
 - [x] CRUD completo de images dos carros<br/>
 - [x] CRUD completo de comentários dos carros<br/>
-- [ ] 
+
+
 ## Endpoints:
 <br/>
 
