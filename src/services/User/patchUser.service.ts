@@ -11,6 +11,7 @@ import {
   userResponseSchema,
   userUpdateSchema,
 } from "../../schemas/user.schema";
+import { hash } from "bcryptjs";
 
 export const patchUserService = async (
   userId: number,
@@ -26,6 +27,11 @@ export const patchUserService = async (
 
   if (!user) {
     throw new AppError("User not found", 404);
+  }
+
+  if (data.password) {
+    const hashedPassword = await hash(data.password, 10);
+    user.password = hashedPassword;
   }
 
   const newUserData = userRepository.create({
