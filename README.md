@@ -51,11 +51,11 @@ O servidor backend será iniciado na porta 3000.
 
 ### Features
 <br/>
-- [x] Criação de Usuário, o seu login
-- [x] Recuperação de senha via Email
-- [x] CRUD completo de carros (cadastrar, listar, atulizar e deletar)
-- [x] CRUD completo de images dos carros
-- [x] CRUD completo de comentários dos carros
+- [x] Criação de Usuário, o seu login<br/>
+- [x] Recuperação de senha via Email<br/>
+- [x] CRUD completo de carros (cadastrar, listar, atulizar e deletar)<br/>
+- [x] CRUD completo de images dos carros<br/>
+- [x] CRUD completo de comentários dos carros<br/>
 - [ ] 
 ## Endpoints:
 <br/>
