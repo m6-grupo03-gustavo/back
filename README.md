@@ -161,3 +161,16 @@ Obs. O campo "account_state" pode ser definido como "seller" caso o usuário sej
 {<br/>
 	"url": "https://example.com/car2.jpg"<br/>
 }
+
+### Para realizar o CRUD dos cometários relacionados a um carro:
+| Método | Endpoint                   | Responsabilidade                                  | Autenticação                           |
+| ------ | -------------------------- | ------------------------------------------------- | -------------------------------------- |
+|GET     | /comments                 | Lista os cometários cadastrados                   | Necessita do token de autenticação |
+|POST    | /comments                  | Cria um novo cometário                            | Necessita do token de autenticação |
+|PATCH   | /comments/:id              | Atualiza o cometário                              | Necessita do token de autenticação |
+|DELETE  | /comments/:id              | Exclui uma cometário                              | Necessita do token de autenticação |   
+
+.POST -/comments<br/>
+{<br/>
+	"comment": "Very nice car!"<br/>
+}
