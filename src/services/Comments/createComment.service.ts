@@ -40,6 +40,7 @@ export const createCommentService = async (
       "comment.id as id",
       "comment.register_date as register_date",
       "user.id as userId",
+      "user.name as userName",
       "car.id as carId",
     ])
     .getRawOne();
