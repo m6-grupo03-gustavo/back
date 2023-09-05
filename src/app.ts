@@ -21,5 +21,5 @@ app.use(
 app.use("/login", loginRoutes);
 app.use("/user", userRoutes);
 app.use("/car", CarRouter);
-app.use("/comments", commentsRoutes)
+app.use("/comments", commentsRoutes);
 app.use(handlerAppError);
