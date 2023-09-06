@@ -15,7 +15,7 @@ export const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.URL_FROM_FRONT,
+    origin: "https://motorshoop.vercel.app",
   })
 );
 app.use("/login", loginRoutes);
