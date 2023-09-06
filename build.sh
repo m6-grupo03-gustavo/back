@@ -5,4 +5,4 @@ set -o errexit
 
 npm install
 yarn run build
-npm run typeorm migration:run -- -d scr/data-source
+npm run typeorm migration:run -- -d src/data-source
